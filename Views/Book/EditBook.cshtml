@@ -1,0 +1,40 @@
+@model Book
+@{
+    ViewData["Title"] = "Edit Book Details";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+    @using (Html.BeginForm("EditBook", "Book", FormMethod.Post))
+    {
+        <table>
+            <tr>
+                <td>Title: </td>            
+                <td>@Html.TextBoxFor(m => m.Title, new {required="required"})
+                </td>
+            </tr>
+            <tr>
+                <td>Author : </td>
+                <td>@Html.DropDownListFor(m => m.CurrentAuthorId, 
+                    new SelectList(@ViewBag.Dropdownlist, "AuthorId", "first_name"), "Select Author Name") </td>
+            </tr>
+            <tr>
+                <td>Published Year: </td>
+                <td>@Html.TextBoxFor(m => m.Published_year, new {required="required"})</td>
+            </tr>
+            <tr>
+                <td>Total Copies: </td>
+                <td>@Html.TextBoxFor(m => m.TotalCopies, new {required="required"})</td>
+            </tr>
+            <tr>
+                <td>Current Available Copies: </td>
+                <td>@Html.TextBoxFor(m => m.CurrentAvailableCopies, new {required="required"})</td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Save"></td>
+            </tr>
+        </table>
+    }
+    <p class = "text-success font-weight-bold">@ViewBag.SuccessMessage</p>
+    <a class="page-scroll" href="/Book"> Back To List</a>
+</div>

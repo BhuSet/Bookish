@@ -1,0 +1,38 @@
+@model Book
+@{
+    ViewData["Title"] = "Book Details";
+}
+
+<div class="text-center table-md">
+    <h2 class="display-5">@ViewData["Title"]</h2>
+    <table class="table">
+        <tr>
+            <td class="col-sm-3 display-6 font-weight-bold">TITLE  </td>
+            <td >@Model.Title</td>
+        </tr>
+        <tr>
+            <td class="col-sm-3 display-6 font-weight-bold">AUTHOR NAME</td>
+            <td>@Model.Author.first_name @Model.Author.last_name</td>
+        </tr>
+        <tr>
+            <td class="col-sm-3 display-6 font-weight-bold">PUBLISHED YEAR </td>
+            <td>@Model.Published_year</td>
+        </tr>
+        <tr>
+            <td class="col-sm-3 display-6 font-weight-bold">TOTAL COPIES</td>
+            <td>@Model.TotalCopies</td>
+        </tr>
+        <tr>
+            <td class="col-sm-3 display-6 font-weight-bold">CURRENT AVAILABLE COPIES </td>
+            <td>@Model.CurrentAvailableCopies</td>
+        </tr>
+    </table>
+    @if(@ViewBag.Message != null)
+    {
+        @using(Html.BeginForm("DeleteBookDone", "Book", new { bookId = @Model.BookId}, FormMethod.Post))
+            {
+                @ViewBag.Message <input type="submit" value="Delete"><br/>
+            }
+    }
+    <a class="page-scroll" href="/Book"> Back To List</a>
+</div>

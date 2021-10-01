@@ -1,0 +1,40 @@
+﻿@model List<Author>
+
+@{
+    ViewData["Title"] = "Authors";
+}
+
+<div class = "text-left">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+    <p class ="text-success font-weight-bold">@ViewBag.SuccessMessage</p>
+</div>
+<h4 class = "text-right"><a class="font-weight-bold" href="/Author/addauthor">+ Add Author</a></h4>
+<div class="text-center">
+    <table class = "Book-list">
+        <tr> 
+            <th>ID</th>  
+            <th>Author </th> 
+            <th>Books </th>
+            <th></th>
+        </tr> 
+        @foreach (Author item in Model)
+        {  
+            <tr> 
+                <td>@item.AuthorId</td> 
+                <td>@item.first_name  @item.last_name</td>  
+                <td>
+                    @foreach(var book in @item.Books)
+                    {
+                        @book.Title<br/>
+                    }
+                </td> 
+                <td>
+                    <a class="page-scroll" href="/Author/@item.AuthorId">Details</a>
+                    <a class="page-scroll" href="/Author/edit/@item.AuthorId">Update</a>
+                    <a class="page-scroll" href="/Author/delete/@item.AuthorId">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+
+</div>

@@ -1,0 +1,26 @@
+@model Author
+@{
+    ViewData["Title"] = "Add Author Details";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+    @using (Html.BeginForm("EditAuthor", "Author", FormMethod.Post))
+    {
+        <table>
+            <tr>
+                <td>Author First Name: </td>
+                <td>@Html.TextBoxFor(m => m.first_name, new {required="required"})</td>
+            </tr>
+            <tr>
+                <td>Author Last Name: </td>
+                <td>@Html.TextBoxFor(m => m.last_name, new {required="required"})</td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Save"></td>
+            </tr>
+        </table>
+    }
+    <p class = "text-success font-weight-bold">@ViewBag.SuccessMessage</p>
+    <a class="page-scroll" href="/Author"> Back To List</a>
+</div>
